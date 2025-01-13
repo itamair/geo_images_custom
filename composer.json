@@ -1,5 +1,5 @@
 {
-    "name": "geo_images_custom",
+    "name": "itamair/geo_images_custom",
     "description": "A Drupal Module that adds functional logics to Drupal Recipe Geo Images and Geo Images Media",
     "keywords": ["recipe", "drupal recipe", "drupal recipes", "drupal geomapping", "drupal media images"],
     "type": "drupal-module",
