@@ -1,0 +1,8 @@
+name: Geo Images Custom
+type: module
+description: A Drupal Module that adds functional logics to Drupal Recipe Geo Images and Geo Images Media
+core_version_requirement: ^10 || ^11
+package: Custom
+dependencies:
+  - geofield:geofield
+  - media_library_importer:media_library_importer

@@ -1,0 +1,153 @@
+<?php
+
+/**
+ * @file
+ * Contains geo_images_custom.module.
+ */
+
+use Drupal\views\Plugin\views\query\Sql;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\ViewExecutable;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\node\NodeInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\media\Entity\Media;
+use Drupal\media\MediaInterface;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Field\FieldItemList;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\file\FileInterface;
+use Drupal\Core\Field\FieldConfigInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Config\Entity\ThirdPartySettingsInterface;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Yaml;
+use Drupal\views\ResultRow;
+use Drupal\views\Plugin\views\ViewsPluginInterface;
+use Drupal\taxonomy\Entity\Term;
+
+/**
+ * Implements hook_page_attachments().
+ */
+function geo_images_custom_page_attachments(array &$page) {
+  $page['#attached']['library'][] = 'geo_images_custom/common';
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ *
+ * Generate the Geoimage Caption computed field.
+ */
+function geo_images_custom_entity_base_field_info(EntityTypeInterface $entity_type) {
+  $fields = [];
+  if ($entity_type->id() === 'media') {
+    // Add a field that generates the Link to Google Maps location.
+    $fields['geofield_googlemaps_link'] = BaseFieldDefinition::create('link')
+      ->setName('geofield_googlemaps_link')
+      ->setLabel(t('Geofield Google Maps Link'))
+      ->setCardinality(-1)
+      ->setComputed(TRUE)
+      ->setClass('\Drupal\geo_images_custom\GeofieldGoogleMapsLinkFieldItemList')
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'region' => 'hidden',
+      ]);
+  }
+  return $fields;
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function geo_images_custom_views_data_alter(array &$data) {
+  // Add the Geofield Google Maps Link field to Views.
+  if (isset($data['media'])) {
+    $data['media']['geofield_googlemaps_link'] = [
+      'title' => t('Geofield Google Maps Link'),
+      'field' => [
+        'id' => 'field',
+        'default_formatter' => 'link',
+        'field_name' => 'geofield_googlemaps_link',
+      ],
+    ];
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ *
+ * Generate Geoimage Node with referenced Geo Image Media, each time
+ * a Geo Image Media is generated with 'field_generate_host_content' value equal
+ * to TRUE.
+ */
+function geo_images_custom_media_insert(MediaInterface $media) {
+
+  // If the Media is a Geoimage with a Geofield not empty
+  // (it means it was Geo-Located correctly).
+  if ($media->bundle() === "geo_image" && !empty($media->field_geofield->value)) {
+
+    // If Media Geoimage Media needs to create a host Geoimage Node.
+    if ($media->field_generate_host_content->value) {
+      $user = \Drupal::currentUser();
+
+      $media_image_data = $media->get('field_media_image')->getValue();
+      $file_url = parse_url($media_image_data[0]['value'], PHP_URL_PATH);
+
+      // Create the Geo Image Node data, with field_geo_image_media referencing.
+      // the created Geo Image Media.
+      $geoimage_node_data = [
+        'type' => "geo_image",
+        // Generate a Title that comes from the Geocoded Media Address or as
+        // Media Image Url name.
+        'title' => $media->field_address->value ?? basename($file_url),
+        'uid' => $user->id(),
+        'status' => 1,
+        'langcode' => \Drupal::service('language_manager')->getDefaultLanguage()->getId(),
+        'field_geo_image_media' => [
+          [
+            'target_id' => $media->id(),
+          ],
+        ],
+      ];
+
+      // Create/Save the Geoimage Node, with Geoimage Paragraph/Geoimage Media.
+      $geoimage_node = Node::create($geoimage_node_data);
+      try {
+        $geoimage_node->save();
+      }
+      catch (\Exception $e) {
+        \Drupal::logger('geo_images_custom - media_library_importer')->error($e->getMessage());
+      }
+    }
+  }
+  // Otherwise if the Media is a Geoimage not Geo-Located (geofield is empty),
+  // then we delete it (and its source file) and log consequently.
+  elseif ($media->bundle() === "geo_image" && empty($media->field_geofield->value)) {
+    \Drupal::logger('geo_images_custom - media_library_importer')->warning("Geoimage '{$media->label()}' couldn't be Geo-Located and is being deleted");
+    try {
+      // Remove the Geoimage Media (not Geo-Located).
+      $media->delete();
+      // Also remove the source file that couldn't be geo-located
+      // (missing EXIF geo info).
+      $file_uri = $media->field_media_image->value;
+      if (!empty($file_uri)) {
+        unlink($media->field_media_image->value);
+      }
+    }
+    catch (\Exception $e) {
+      \Drupal::logger('geo_images_custom - media_library_importer')->error($e->getMessage());
+    }
+  }
+}
+
+/**
+ * Implements hook_alter_media_library_importer_media_extra_fields().
+ */
+function geo_images_custom_alter_media_library_importer_media_extra_fields(FileInterface $file, string $file_url, string $uri, array &$extra_fields) {
+   // Set to TRUE the generate_host_content field/property.
+  $extra_fields['field_generate_host_content'] = TRUE;
+}
+
