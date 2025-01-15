@@ -12,6 +12,28 @@
       position: relative;
       width: 340px;
       margin: 10px 10px 10px 10px;
+      h2 {
+        font-size: 1.4em;
+        margin: 0.5em 20px 0.5em 0;
+        line-height: 1.5rem;
+        font-weight: normal;
+        padding-top: 6px
+      }
+      h3 {
+        font-size: 1.2em;
+        margin: 0.5em 20px 0.5em 0;
+        line-height: 1.4rem;
+        font-weight: normal;
+      }
+      div {
+        margin-bottom: 6px;
+      }
+      div:last-child {
+        margin-bottom: 0;
+      }
+      .node__content {
+        padding-block-end: 0;
+      }
       .field--name-geoimage-caption {
         padding-left: 0.5rem !important;
         font-size: 0.8rem;
