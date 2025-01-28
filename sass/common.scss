@@ -1,29 +1,102 @@
 .views-ui-display-tab-setting.overridden,
-.views-ui-display-tab-bucket.overridden {
+.views-ui-display-tab-bucket.overridden,
+.views-ui-display-tab-bucket.overridden .views-ui-display-tab-bucket__title{
   font-style: italic;
   color: red !important;
   font-weight: bold;
 }
 
-#leaflet-map-view-geo-images-geo-images-map {
+/**
+ * @file
+ * Grid system definition for the content wide layout.
+ */
+
+.layout--content-medium,
+.layout--pass--content-medium > * {
+  grid-column: 1 / 7;
+  width: 100%;
+}
+
+@media (min-width: 43.75rem) {
+  .layout--content-medium,
+  .layout--pass--content-medium > * {
+    grid-column: 2 / 14 !important;
+  }
+}
+
+@media (min-width: 62.5rem) {
+  .layout--content-medium,
+  .layout--pass--content-medium > * {
+    grid-column: 2 / 16;
+
+  }
+}
+
+/*
+  If .layout--content-narrow is nested within any of the following, allocate the appropriate
+  amount of columns within its parent .grid-full.
+    - .layout--content-narrow class.
+    - Element that's inheriting the layout--content-narrow styles from its parent region.
+    - .layout--content-medium class.
+    - Element that's inheriting the layout--content-medium styles from its parent region.
+*/
+
+@media (min-width: 43.75rem) {
+  .layout--content-narrow .layout--content-narrow,
+  .layout--pass--content-narrow > * .layout--content-narrow,
+  .layout--content-medium .layout--content-narrow,
+  .layout--pass--content-medium > * .layout--content-narrow,
+  .layout--content-narrow .layout--pass--content-narrow > *,
+  .layout--pass--content-narrow > * .layout--pass--content-narrow > *,
+  .layout--content-medium .layout--pass--content-narrow > *,
+  .layout--pass--content-medium > * .layout--pass--content-narrow > * {
+    grid-column: 1 / 13;
+  }
+}
+
+@media (min-width: 62.5rem) {
+  .layout--content-narrow .layout--content-narrow,
+  .layout--pass--content-narrow > * .layout--content-narrow,
+  .layout--content-medium .layout--content-narrow,
+  .layout--pass--content-medium > * .layout--content-narrow,
+  .layout--content-narrow .layout--pass--content-narrow > *,
+  .layout--pass--content-narrow > * .layout--pass--content-narrow > *,
+  .layout--content-medium .layout--pass--content-narrow > *,
+  .layout--pass--content-medium > * .layout--pass--content-narrow > * {
+    grid-column: 1 / 12 !important;
+
+  }
+}
+
+#leaflet-map-view-geo-images-leaflet-map {
   .leaflet-popup-content-wrapper {
     border-radius: 1px;
     .leaflet-popup-content {
       position: relative;
-      width: 340px;
+      width: auto !important;
+      article.node {
+        width: 300px !important;
+      }
+      article.node--type-geometry {
+        width: auto !important;
+      }
       margin: 10px 10px 10px 10px;
       h2 {
-        font-size: 1.3em;
+        font-size: 1.2em;
         margin: 0.5em 20px 0.5em 0;
         line-height: 1.5rem;
         font-weight: normal;
         padding-top: 6px
       }
       h3 {
-        font-size: 1.2em;
+        font-size: 1.1em;
         margin: 0.5em 20px 0.5em 0;
         line-height: 1.4rem;
         font-weight: normal;
+      }
+      h3 {
+        font-size: 1.25rem;
+        line-height: var(--sp1-5);
       }
       div {
         margin-bottom: 6px;
@@ -47,25 +120,14 @@
         float: none; // This is needed to move the Leaflet Popup to show all of it in the map container
         margin: 0;
       }
-      .field--name-geofield-googlemaps-link .field__item {
-        display: inline-block;
-        margin-right: 10px;
-      }
     }
   }
 }
-
-
 
 // Move down the Leaflet Popup Close Button,
 // if we want the leaflet-popup-content-wrapper padding top is 0.
 .leaflet-container a.leaflet-popup-close-button {
   top: 12px;
-}
-
-// Tune the Geocoder Control Input element font size.
-.leaflet-control-geocoder-container input {
-  font-size: 1rem;
 }
 
 // Customise Leaflet Marker Icons
@@ -143,4 +205,131 @@
     }
   }
 }
+
+/**
+ * @file
+ * Region default layout.
+ */
+
+.region > * {
+  margin-block-end: var(--sp) !important;
+}
+
+@media (min-width: 43.75rem) {
+  .region > * {
+    margin-block-end: var(--sp2) !important;
+  }
+}
+
+@media (min-width: 62.5rem) {
+  .region > * {
+    margin-block-end: var(--sp2) !important;
+  }
+}
+
+/**
+ * @file
+ * Visual styles for fields.
+ */
+
+.field:not(:last-child) {
+  margin-block-end: var(--sp1) !important;
+}
+
+// field--name-geofield-googlemaps-link
+.field--name-geofield-googlemaps-link {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  .field__item {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}
+
+// View Filters
+.view > * {
+  margin-bottom: 0.6rem !important;
+}
+
+/**
+ * @file
+ * Styles for views.
+ */
+
+.view,
+.view-content {
+  display: grid;
+  gap: var(--sp0-5) !important;
+  grid-template-rows: max-content;
+
+}
+
+@media (min-width: 43.75rem) {
+  .view,
+  .view-content {
+    gap: var(--sp3);
+  }
+}
+
+
+// view view-geo-images-list
+.view.view-geo-images-list {
+  .field:not(:last-child) {
+    margin-block-end: var(--sp0-5) !important;
+  }
+}
+
+// view-geo-images-list.view-display-id-attachment_dates
+.view-geo-images-list {
+  .view-filters .views-exposed-form {
+    display: none !important;
+  }
+  .view-header {
+    margin-bottom: 0.2rem !important;
+    > p {
+      margin-block-start: 0 !important;
+      margin-block-end: 0 !important;
+    }
+  }
+  .view-filters {
+    form {
+      fieldset.fieldset {
+        border: none !important;
+        legend.fieldset__legend {
+          display: none !important;
+        }
+        .fieldset__wrapper {
+          margin-block-start: 0 !important;
+          padding-block: 0 !important;
+          padding-inline: 0 !important;
+          .form-item {
+            margin-block: 0 !important;
+          }
+        }
+      }
+      .form-actions {
+        margin-top: 0 !important;
+      }
+    }
+  }
+  &.view-display-id-attachment_dates {
+    .view-content {
+      gap: 0 !important;
+      max-height: 106px;
+      overflow-y: scroll;
+      border: 1px solid lightgrey;
+      padding: 0 10px 10px 10px;
+      gap: 0 !important;
+      > h3 {
+        margin-block: 0;
+        font-size: 1rem;
+        font-weight: normal;
+      }
+      > div {
+        display: none;
+      }
+    }
+  }
+}
+
 

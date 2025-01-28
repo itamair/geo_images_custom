@@ -1,161 +1,349 @@
 /* line 1, ../sass/common.scss */
 .views-ui-display-tab-setting.overridden,
-.views-ui-display-tab-bucket.overridden {
+.views-ui-display-tab-bucket.overridden,
+.views-ui-display-tab-bucket.overridden .views-ui-display-tab-bucket__title {
   font-style: italic;
   color: red !important;
   font-weight: bold;
 }
 
-/* line 9, ../sass/common.scss */
-#leaflet-map-view-geo-images-geo-images-map .leaflet-popup-content-wrapper {
+/**
+ * @file
+ * Grid system definition for the content wide layout.
+ */
+/* line 14, ../sass/common.scss */
+.layout--content-medium,
+.layout--pass--content-medium > * {
+  grid-column: 1 / 7;
+  width: 100%;
+}
+
+@media (min-width: 43.75rem) {
+  /* line 21, ../sass/common.scss */
+  .layout--content-medium,
+  .layout--pass--content-medium > * {
+    grid-column: 2 / 14 !important;
+  }
+}
+@media (min-width: 62.5rem) {
+  /* line 28, ../sass/common.scss */
+  .layout--content-medium,
+  .layout--pass--content-medium > * {
+    grid-column: 2 / 16;
+  }
+}
+/*
+  If .layout--content-narrow is nested within any of the following, allocate the appropriate
+  amount of columns within its parent .grid-full.
+    - .layout--content-narrow class.
+    - Element that's inheriting the layout--content-narrow styles from its parent region.
+    - .layout--content-medium class.
+    - Element that's inheriting the layout--content-medium styles from its parent region.
+*/
+@media (min-width: 43.75rem) {
+  /* line 45, ../sass/common.scss */
+  .layout--content-narrow .layout--content-narrow,
+  .layout--pass--content-narrow > * .layout--content-narrow,
+  .layout--content-medium .layout--content-narrow,
+  .layout--pass--content-medium > * .layout--content-narrow,
+  .layout--content-narrow .layout--pass--content-narrow > *,
+  .layout--pass--content-narrow > * .layout--pass--content-narrow > *,
+  .layout--content-medium .layout--pass--content-narrow > *,
+  .layout--pass--content-medium > * .layout--pass--content-narrow > * {
+    grid-column: 1 / 13;
+  }
+}
+@media (min-width: 62.5rem) {
+  /* line 58, ../sass/common.scss */
+  .layout--content-narrow .layout--content-narrow,
+  .layout--pass--content-narrow > * .layout--content-narrow,
+  .layout--content-medium .layout--content-narrow,
+  .layout--pass--content-medium > * .layout--content-narrow,
+  .layout--content-narrow .layout--pass--content-narrow > *,
+  .layout--pass--content-narrow > * .layout--pass--content-narrow > *,
+  .layout--content-medium .layout--pass--content-narrow > *,
+  .layout--pass--content-medium > * .layout--pass--content-narrow > * {
+    grid-column: 1 / 12 !important;
+  }
+}
+/* line 72, ../sass/common.scss */
+#leaflet-map-view-geo-images-leaflet-map .leaflet-popup-content-wrapper {
   border-radius: 1px;
 }
-/* line 11, ../sass/common.scss */
-#leaflet-map-view-geo-images-geo-images-map .leaflet-popup-content-wrapper .leaflet-popup-content {
+/* line 74, ../sass/common.scss */
+#leaflet-map-view-geo-images-leaflet-map .leaflet-popup-content-wrapper .leaflet-popup-content {
   position: relative;
-  width: 340px;
+  width: auto !important;
   margin: 10px 10px 10px 10px;
 }
-/* line 15, ../sass/common.scss */
-#leaflet-map-view-geo-images-geo-images-map .leaflet-popup-content-wrapper .leaflet-popup-content h2 {
-  font-size: 1.3em;
+/* line 77, ../sass/common.scss */
+#leaflet-map-view-geo-images-leaflet-map .leaflet-popup-content-wrapper .leaflet-popup-content article.node {
+  width: 300px !important;
+}
+/* line 80, ../sass/common.scss */
+#leaflet-map-view-geo-images-leaflet-map .leaflet-popup-content-wrapper .leaflet-popup-content article.node--type-geometry {
+  width: auto !important;
+}
+/* line 84, ../sass/common.scss */
+#leaflet-map-view-geo-images-leaflet-map .leaflet-popup-content-wrapper .leaflet-popup-content h2 {
+  font-size: 1.2em;
   margin: 0.5em 20px 0.5em 0;
   line-height: 1.5rem;
   font-weight: normal;
   padding-top: 6px;
 }
-/* line 22, ../sass/common.scss */
-#leaflet-map-view-geo-images-geo-images-map .leaflet-popup-content-wrapper .leaflet-popup-content h3 {
-  font-size: 1.2em;
+/* line 91, ../sass/common.scss */
+#leaflet-map-view-geo-images-leaflet-map .leaflet-popup-content-wrapper .leaflet-popup-content h3 {
+  font-size: 1.1em;
   margin: 0.5em 20px 0.5em 0;
   line-height: 1.4rem;
   font-weight: normal;
 }
-/* line 28, ../sass/common.scss */
-#leaflet-map-view-geo-images-geo-images-map .leaflet-popup-content-wrapper .leaflet-popup-content div {
+/* line 97, ../sass/common.scss */
+#leaflet-map-view-geo-images-leaflet-map .leaflet-popup-content-wrapper .leaflet-popup-content h3 {
+  font-size: 1.25rem;
+  line-height: var(--sp1-5);
+}
+/* line 101, ../sass/common.scss */
+#leaflet-map-view-geo-images-leaflet-map .leaflet-popup-content-wrapper .leaflet-popup-content div {
   margin-bottom: 6px;
 }
-/* line 31, ../sass/common.scss */
-#leaflet-map-view-geo-images-geo-images-map .leaflet-popup-content-wrapper .leaflet-popup-content div:last-child {
+/* line 104, ../sass/common.scss */
+#leaflet-map-view-geo-images-leaflet-map .leaflet-popup-content-wrapper .leaflet-popup-content div:last-child {
   margin-bottom: 0;
 }
-/* line 34, ../sass/common.scss */
-#leaflet-map-view-geo-images-geo-images-map .leaflet-popup-content-wrapper .leaflet-popup-content .node__content {
+/* line 107, ../sass/common.scss */
+#leaflet-map-view-geo-images-leaflet-map .leaflet-popup-content-wrapper .leaflet-popup-content .node__content {
   padding-block-end: 0;
 }
-/* line 37, ../sass/common.scss */
-#leaflet-map-view-geo-images-geo-images-map .leaflet-popup-content-wrapper .leaflet-popup-content .field--name-geoimage-caption {
+/* line 110, ../sass/common.scss */
+#leaflet-map-view-geo-images-leaflet-map .leaflet-popup-content-wrapper .leaflet-popup-content .field--name-geoimage-caption {
   padding-left: 0.5rem !important;
   font-size: 0.8rem;
   opacity: 70%;
   line-height: 1.2rem;
 }
-/* line 43, ../sass/common.scss */
-#leaflet-map-view-geo-images-geo-images-map .leaflet-popup-content-wrapper .leaflet-popup-content .field:not(:last-child) {
+/* line 116, ../sass/common.scss */
+#leaflet-map-view-geo-images-leaflet-map .leaflet-popup-content-wrapper .leaflet-popup-content .field:not(:last-child) {
   margin-bottom: 0.4rem !important;
 }
-/* line 46, ../sass/common.scss */
-#leaflet-map-view-geo-images-geo-images-map .leaflet-popup-content-wrapper .leaflet-popup-content .field--type-image {
+/* line 119, ../sass/common.scss */
+#leaflet-map-view-geo-images-leaflet-map .leaflet-popup-content-wrapper .leaflet-popup-content .field--type-image {
   float: none;
   margin: 0;
 }
-/* line 50, ../sass/common.scss */
-#leaflet-map-view-geo-images-geo-images-map .leaflet-popup-content-wrapper .leaflet-popup-content .field--name-geofield-googlemaps-link .field__item {
-  display: inline-block;
-  margin-right: 10px;
-}
 
-/* line 62, ../sass/common.scss */
+/* line 129, ../sass/common.scss */
 .leaflet-container a.leaflet-popup-close-button {
   top: 12px;
 }
 
-/* line 67, ../sass/common.scss */
-.leaflet-control-geocoder-container input {
-  font-size: 1rem;
-}
-
-/* line 73, ../sass/common.scss */
+/* line 135, ../sass/common.scss */
 .leaflet-pane .leaflet-marker-icon.up-to-the-top {
   z-index: 1000 !important;
 }
-/* line 76, ../sass/common.scss */
+/* line 138, ../sass/common.scss */
 .leaflet-pane .leaflet-marker-icon.opacity-50 {
   border: black solid thin;
   opacity: 50% !important;
 }
-/* line 80, ../sass/common.scss */
+/* line 142, ../sass/common.scss */
 .leaflet-pane .leaflet-marker-icon.opacity-50:hover {
   opacity: 100% !important;
 }
-/* line 83, ../sass/common.scss */
+/* line 145, ../sass/common.scss */
 .leaflet-pane .leaflet-marker-icon.opacity-75 {
   opacity: 60% !important;
 }
-/* line 86, ../sass/common.scss */
+/* line 148, ../sass/common.scss */
 .leaflet-pane .leaflet-marker-icon.opacity-75:hover {
   opacity: 100% !important;
 }
 
-/* line 93, ../sass/common.scss */
+/* line 155, ../sass/common.scss */
 .leaflet-control-layers-list label {
   margin-bottom: 4px;
 }
-/* line 96, ../sass/common.scss */
+/* line 158, ../sass/common.scss */
 .leaflet-control-layers-list input[type="radio"] {
   margin-right: 4px;
   height: 1.2rem;
   width: 1.2rem;
 }
-/* line 100, ../sass/common.scss */
+/* line 162, ../sass/common.scss */
 .leaflet-control-layers-list input[type="radio"]:checked {
   background-size: 0.6rem;
 }
-/* line 104, ../sass/common.scss */
+/* line 166, ../sass/common.scss */
 .leaflet-control-layers-list input[type="checkbox"] {
   margin-right: 4px;
   height: 1.2rem;
   width: 1.2rem;
 }
 
-/* line 112, ../sass/common.scss */
+/* line 174, ../sass/common.scss */
 .leaflet-tooltip-left {
   margin-left: -20px;
 }
 
-/* line 115, ../sass/common.scss */
+/* line 177, ../sass/common.scss */
 .leaflet-tooltip-right {
   margin-left: 20px;
 }
 
-/* line 120, ../sass/common.scss */
+/* line 182, ../sass/common.scss */
 .leaflet-marker-icon.marker-cluster div {
   font-weight: bold;
 }
-/* line 123, ../sass/common.scss */
+/* line 185, ../sass/common.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-small {
   background-color: inherit !important;
 }
-/* line 125, ../sass/common.scss */
+/* line 187, ../sass/common.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-small div {
   background-color: #f1cf61 !important;
   border: black solid 1px;
 }
-/* line 130, ../sass/common.scss */
+/* line 192, ../sass/common.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-medium {
   background-color: inherit !important;
 }
-/* line 132, ../sass/common.scss */
+/* line 194, ../sass/common.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-medium div {
   background-color: #f1cf61 !important;
   border: black solid 1px;
 }
-/* line 137, ../sass/common.scss */
+/* line 199, ../sass/common.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-large {
   background-color: inherit !important;
 }
-/* line 139, ../sass/common.scss */
+/* line 201, ../sass/common.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-large div {
   background-color: #f1cf61 !important;
   border: black solid 1px;
+}
+
+/**
+ * @file
+ * Region default layout.
+ */
+/* line 214, ../sass/common.scss */
+.region > * {
+  margin-block-end: var(--sp) !important;
+}
+
+@media (min-width: 43.75rem) {
+  /* line 219, ../sass/common.scss */
+  .region > * {
+    margin-block-end: var(--sp2) !important;
+  }
+}
+@media (min-width: 62.5rem) {
+  /* line 225, ../sass/common.scss */
+  .region > * {
+    margin-block-end: var(--sp2) !important;
+  }
+}
+/**
+ * @file
+ * Visual styles for fields.
+ */
+/* line 235, ../sass/common.scss */
+.field:not(:last-child) {
+  margin-block-end: var(--sp1) !important;
+}
+
+/* line 240, ../sass/common.scss */
+.field--name-geofield-googlemaps-link {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+/* line 243, ../sass/common.scss */
+.field--name-geofield-googlemaps-link .field__item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* line 250, ../sass/common.scss */
+.view > * {
+  margin-bottom: 0.6rem !important;
+}
+
+/**
+ * @file
+ * Styles for views.
+ */
+/* line 259, ../sass/common.scss */
+.view,
+.view-content {
+  display: grid;
+  gap: var(--sp0-5) !important;
+  grid-template-rows: max-content;
+}
+
+@media (min-width: 43.75rem) {
+  /* line 268, ../sass/common.scss */
+  .view,
+  .view-content {
+    gap: var(--sp3);
+  }
+}
+/* line 277, ../sass/common.scss */
+.view.view-geo-images-list .field:not(:last-child) {
+  margin-block-end: var(--sp0-5) !important;
+}
+
+/* line 284, ../sass/common.scss */
+.view-geo-images-list .view-filters .views-exposed-form {
+  display: none !important;
+}
+/* line 287, ../sass/common.scss */
+.view-geo-images-list .view-header {
+  margin-bottom: 0.2rem !important;
+}
+/* line 289, ../sass/common.scss */
+.view-geo-images-list .view-header > p {
+  margin-block-start: 0 !important;
+  margin-block-end: 0 !important;
+}
+/* line 296, ../sass/common.scss */
+.view-geo-images-list .view-filters form fieldset.fieldset {
+  border: none !important;
+}
+/* line 298, ../sass/common.scss */
+.view-geo-images-list .view-filters form fieldset.fieldset legend.fieldset__legend {
+  display: none !important;
+}
+/* line 301, ../sass/common.scss */
+.view-geo-images-list .view-filters form fieldset.fieldset .fieldset__wrapper {
+  margin-block-start: 0 !important;
+  padding-block: 0 !important;
+  padding-inline: 0 !important;
+}
+/* line 305, ../sass/common.scss */
+.view-geo-images-list .view-filters form fieldset.fieldset .fieldset__wrapper .form-item {
+  margin-block: 0 !important;
+}
+/* line 310, ../sass/common.scss */
+.view-geo-images-list .view-filters form .form-actions {
+  margin-top: 0 !important;
+}
+/* line 316, ../sass/common.scss */
+.view-geo-images-list.view-display-id-attachment_dates .view-content {
+  gap: 0 !important;
+  max-height: 106px;
+  overflow-y: scroll;
+  border: 1px solid lightgrey;
+  padding: 0 10px 10px 10px;
+  gap: 0 !important;
+}
+/* line 323, ../sass/common.scss */
+.view-geo-images-list.view-display-id-attachment_dates .view-content > h3 {
+  margin-block: 0;
+  font-size: 1rem;
+  font-weight: normal;
+}
+/* line 328, ../sass/common.scss */
+.view-geo-images-list.view-display-id-attachment_dates .view-content > div {
+  display: none;
 }
