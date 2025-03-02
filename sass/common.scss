@@ -177,34 +177,61 @@
 .leaflet-tooltip-right {
   margin-left: 20px;
 }
+
 // Leaflet Markers Clusters Style overrides
 .leaflet-marker-icon.marker-cluster {
   div {
     font-weight: bold;
+    color: white
   }
   &.marker-cluster-small {
+    div {
+      color: black;
+      font-weight: normal;
+    }
     background-color: inherit !important;
     div {
-      background-color: rgb(241, 207, 97) !important;
+      width: 24px;
+      height: 24px;
+      border-radius: 12px;
+      background-color: rgb(248, 194, 22) !important;
       border: black solid 1px;
+      span {
+        line-height: 22px;
+      }
     }
   }
   &.marker-cluster-medium {
     background-color: inherit !important;
     div {
-      background-color: rgb(241, 207, 97) !important;
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: rgba(242, 94, 10, 0.71) !important;
       border: black solid 1px;
+      span {
+        line-height: 40px;
+      }
     }
   }
   &.marker-cluster-large {
     background-color: inherit !important;
+    z-index: 100 !important;
     div {
-      background-color: rgb(241, 207, 97) !important;
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      background-color: rgb(252, 3, 3) !important;
+      opacity: 80%;
       border: black solid 1px;
-
+      span {
+        line-height: 60px;
+      }
     }
   }
 }
+
+
 
 /**
  * @file

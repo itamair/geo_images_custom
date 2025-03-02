@@ -191,55 +191,84 @@
   margin-left: 20px;
 }
 
-/* line 182, ../sass/common.scss */
+/* line 183, ../sass/common.scss */
 .leaflet-marker-icon.marker-cluster div {
   font-weight: bold;
+  color: white;
 }
-/* line 185, ../sass/common.scss */
+/* line 187, ../sass/common.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-small {
   background-color: inherit !important;
 }
-/* line 187, ../sass/common.scss */
+/* line 188, ../sass/common.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-small div {
-  background-color: #f1cf61 !important;
-  border: black solid 1px;
+  color: black;
+  font-weight: normal;
 }
-/* line 192, ../sass/common.scss */
-.leaflet-marker-icon.marker-cluster.marker-cluster-medium {
-  background-color: inherit !important;
-}
-/* line 194, ../sass/common.scss */
-.leaflet-marker-icon.marker-cluster.marker-cluster-medium div {
-  background-color: #f1cf61 !important;
+/* line 193, ../sass/common.scss */
+.leaflet-marker-icon.marker-cluster.marker-cluster-small div {
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: #f8c216 !important;
   border: black solid 1px;
 }
 /* line 199, ../sass/common.scss */
-.leaflet-marker-icon.marker-cluster.marker-cluster-large {
+.leaflet-marker-icon.marker-cluster.marker-cluster-small div span {
+  line-height: 22px;
+}
+/* line 204, ../sass/common.scss */
+.leaflet-marker-icon.marker-cluster.marker-cluster-medium {
   background-color: inherit !important;
 }
-/* line 201, ../sass/common.scss */
-.leaflet-marker-icon.marker-cluster.marker-cluster-large div {
-  background-color: #f1cf61 !important;
+/* line 206, ../sass/common.scss */
+.leaflet-marker-icon.marker-cluster.marker-cluster-medium div {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: rgba(242, 94, 10, 0.71) !important;
   border: black solid 1px;
+}
+/* line 212, ../sass/common.scss */
+.leaflet-marker-icon.marker-cluster.marker-cluster-medium div span {
+  line-height: 40px;
+}
+/* line 217, ../sass/common.scss */
+.leaflet-marker-icon.marker-cluster.marker-cluster-large {
+  background-color: inherit !important;
+  z-index: 100 !important;
+}
+/* line 220, ../sass/common.scss */
+.leaflet-marker-icon.marker-cluster.marker-cluster-large div {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: #fc0303 !important;
+  opacity: 80%;
+  border: black solid 1px;
+}
+/* line 227, ../sass/common.scss */
+.leaflet-marker-icon.marker-cluster.marker-cluster-large div span {
+  line-height: 60px;
 }
 
 /**
  * @file
  * Region default layout.
  */
-/* line 214, ../sass/common.scss */
+/* line 241, ../sass/common.scss */
 .region > * {
   margin-block-end: var(--sp) !important;
 }
 
 @media (min-width: 43.75rem) {
-  /* line 219, ../sass/common.scss */
+  /* line 246, ../sass/common.scss */
   .region > * {
     margin-block-end: var(--sp2) !important;
   }
 }
 @media (min-width: 62.5rem) {
-  /* line 225, ../sass/common.scss */
+  /* line 252, ../sass/common.scss */
   .region > * {
     margin-block-end: var(--sp2) !important;
   }
@@ -248,23 +277,23 @@
  * @file
  * Visual styles for fields.
  */
-/* line 235, ../sass/common.scss */
+/* line 262, ../sass/common.scss */
 .field:not(:last-child) {
   margin-block-end: var(--sp1) !important;
 }
 
-/* line 240, ../sass/common.scss */
+/* line 267, ../sass/common.scss */
 .field--name-geofield-googlemaps-link {
   margin-top: 10px;
   font-size: 0.9rem;
 }
-/* line 243, ../sass/common.scss */
+/* line 270, ../sass/common.scss */
 .field--name-geofield-googlemaps-link .field__item {
   display: inline-block;
   margin-right: 10px;
 }
 
-/* line 250, ../sass/common.scss */
+/* line 277, ../sass/common.scss */
 .view > * {
   margin-bottom: 0.6rem !important;
 }
@@ -273,7 +302,7 @@
  * @file
  * Styles for views.
  */
-/* line 259, ../sass/common.scss */
+/* line 286, ../sass/common.scss */
 .view,
 .view-content {
   display: grid;
@@ -282,53 +311,53 @@
 }
 
 @media (min-width: 43.75rem) {
-  /* line 268, ../sass/common.scss */
+  /* line 295, ../sass/common.scss */
   .view,
   .view-content {
     gap: var(--sp3);
   }
 }
-/* line 277, ../sass/common.scss */
+/* line 304, ../sass/common.scss */
 .view.view-geo-images-list .field:not(:last-child) {
   margin-block-end: var(--sp0-5) !important;
 }
 
-/* line 284, ../sass/common.scss */
+/* line 311, ../sass/common.scss */
 .view-geo-images-list .view-filters .views-exposed-form {
   display: none !important;
 }
-/* line 287, ../sass/common.scss */
+/* line 314, ../sass/common.scss */
 .view-geo-images-list .view-header {
   margin-bottom: 0.2rem !important;
 }
-/* line 289, ../sass/common.scss */
+/* line 316, ../sass/common.scss */
 .view-geo-images-list .view-header > p {
   margin-block-start: 0 !important;
   margin-block-end: 0 !important;
 }
-/* line 296, ../sass/common.scss */
+/* line 323, ../sass/common.scss */
 .view-geo-images-list .view-filters form fieldset.fieldset {
   border: none !important;
 }
-/* line 298, ../sass/common.scss */
+/* line 325, ../sass/common.scss */
 .view-geo-images-list .view-filters form fieldset.fieldset legend.fieldset__legend {
   display: none !important;
 }
-/* line 301, ../sass/common.scss */
+/* line 328, ../sass/common.scss */
 .view-geo-images-list .view-filters form fieldset.fieldset .fieldset__wrapper {
   margin-block-start: 0 !important;
   padding-block: 0 !important;
   padding-inline: 0 !important;
 }
-/* line 305, ../sass/common.scss */
+/* line 332, ../sass/common.scss */
 .view-geo-images-list .view-filters form fieldset.fieldset .fieldset__wrapper .form-item {
   margin-block: 0 !important;
 }
-/* line 310, ../sass/common.scss */
+/* line 337, ../sass/common.scss */
 .view-geo-images-list .view-filters form .form-actions {
   margin-top: 0 !important;
 }
-/* line 316, ../sass/common.scss */
+/* line 343, ../sass/common.scss */
 .view-geo-images-list.view-display-id-attachment_dates .view-content {
   gap: 0 !important;
   max-height: 106px;
@@ -337,13 +366,13 @@
   padding: 0 10px 10px 10px;
   gap: 0 !important;
 }
-/* line 323, ../sass/common.scss */
+/* line 350, ../sass/common.scss */
 .view-geo-images-list.view-display-id-attachment_dates .view-content > h3 {
   margin-block: 0;
   font-size: 1rem;
   font-weight: normal;
 }
-/* line 328, ../sass/common.scss */
+/* line 355, ../sass/common.scss */
 .view-geo-images-list.view-display-id-attachment_dates .view-content > div {
   display: none;
 }
