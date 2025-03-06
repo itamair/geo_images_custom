@@ -15,11 +15,11 @@ class CustomDrushCommands extends DrushCommands {
   /**
    * Constructs a new Drush commands class instance.
    *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   The Entity type manager service.
    */
   public function __construct(
-    protected  EntityTypeManagerInterface $entity_type_manager,
+    protected  EntityTypeManagerInterface $entityTypeManager,
   ) {
     parent::__construct();
   }
@@ -32,7 +32,7 @@ class CustomDrushCommands extends DrushCommands {
    */
   public function geoImagesDelete(): void {
     try {
-      $media_storage = \Drupal::entityTypeManager()->getStorage('media');
+      $media_storage = $this->entityTypeManager->getStorage('media');
       $query_media = $media_storage->getQuery()
         ->condition('bundle', ['geoimage', 'geo_image'], 'IN')
         ->condition('field_generate_host_content', 1)
