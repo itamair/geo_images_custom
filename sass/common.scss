@@ -306,11 +306,8 @@
   }
 }
 
-// view-geo-images-list.view-display-id-attachment_dates
-.view-geo-images-list {
-  .view-filters .views-exposed-form {
-    display: none !important;
-  }
+// view-geo-images & view-geo-images-list header and filters
+.view-geo-images-map,.view-geo-images-list {
   .view-header {
     margin-bottom: 0.2rem !important;
     > p {
@@ -346,7 +343,6 @@
       overflow-y: scroll;
       border: 1px solid lightgrey;
       padding: 0 10px 10px 10px;
-      gap: 0 !important;
       > h3 {
         margin-block: 0;
         font-size: 1rem;

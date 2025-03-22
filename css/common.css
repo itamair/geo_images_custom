@@ -323,56 +323,51 @@
 }
 
 /* line 311, ../sass/common.scss */
-.view-geo-images-list .view-filters .views-exposed-form {
-  display: none !important;
-}
-/* line 314, ../sass/common.scss */
-.view-geo-images-list .view-header {
+.view-geo-images-map .view-header, .view-geo-images-list .view-header {
   margin-bottom: 0.2rem !important;
 }
-/* line 316, ../sass/common.scss */
-.view-geo-images-list .view-header > p {
+/* line 313, ../sass/common.scss */
+.view-geo-images-map .view-header > p, .view-geo-images-list .view-header > p {
   margin-block-start: 0 !important;
   margin-block-end: 0 !important;
 }
-/* line 323, ../sass/common.scss */
-.view-geo-images-list .view-filters form fieldset.fieldset {
+/* line 320, ../sass/common.scss */
+.view-geo-images-map .view-filters form fieldset.fieldset, .view-geo-images-list .view-filters form fieldset.fieldset {
   border: none !important;
 }
-/* line 325, ../sass/common.scss */
-.view-geo-images-list .view-filters form fieldset.fieldset legend.fieldset__legend {
+/* line 322, ../sass/common.scss */
+.view-geo-images-map .view-filters form fieldset.fieldset legend.fieldset__legend, .view-geo-images-list .view-filters form fieldset.fieldset legend.fieldset__legend {
   display: none !important;
 }
-/* line 328, ../sass/common.scss */
-.view-geo-images-list .view-filters form fieldset.fieldset .fieldset__wrapper {
+/* line 325, ../sass/common.scss */
+.view-geo-images-map .view-filters form fieldset.fieldset .fieldset__wrapper, .view-geo-images-list .view-filters form fieldset.fieldset .fieldset__wrapper {
   margin-block-start: 0 !important;
   padding-block: 0 !important;
   padding-inline: 0 !important;
 }
-/* line 332, ../sass/common.scss */
-.view-geo-images-list .view-filters form fieldset.fieldset .fieldset__wrapper .form-item {
+/* line 329, ../sass/common.scss */
+.view-geo-images-map .view-filters form fieldset.fieldset .fieldset__wrapper .form-item, .view-geo-images-list .view-filters form fieldset.fieldset .fieldset__wrapper .form-item {
   margin-block: 0 !important;
 }
-/* line 337, ../sass/common.scss */
-.view-geo-images-list .view-filters form .form-actions {
+/* line 334, ../sass/common.scss */
+.view-geo-images-map .view-filters form .form-actions, .view-geo-images-list .view-filters form .form-actions {
   margin-top: 0 !important;
 }
-/* line 343, ../sass/common.scss */
-.view-geo-images-list.view-display-id-attachment_dates .view-content {
+/* line 340, ../sass/common.scss */
+.view-geo-images-map.view-display-id-attachment_dates .view-content, .view-geo-images-list.view-display-id-attachment_dates .view-content {
   gap: 0 !important;
   max-height: 106px;
   overflow-y: scroll;
   border: 1px solid lightgrey;
   padding: 0 10px 10px 10px;
-  gap: 0 !important;
 }
-/* line 350, ../sass/common.scss */
-.view-geo-images-list.view-display-id-attachment_dates .view-content > h3 {
+/* line 346, ../sass/common.scss */
+.view-geo-images-map.view-display-id-attachment_dates .view-content > h3, .view-geo-images-list.view-display-id-attachment_dates .view-content > h3 {
   margin-block: 0;
   font-size: 1rem;
   font-weight: normal;
 }
-/* line 355, ../sass/common.scss */
-.view-geo-images-list.view-display-id-attachment_dates .view-content > div {
+/* line 351, ../sass/common.scss */
+.view-geo-images-map.view-display-id-attachment_dates .view-content > div, .view-geo-images-list.view-display-id-attachment_dates .view-content > div {
   display: none;
 }
