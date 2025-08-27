@@ -151,3 +151,162 @@ function geo_images_custom_alter_media_library_importer_media_extra_fields(FileI
   $extra_fields['field_generate_host_content'] = TRUE;
 }
 
+/**
+ * Returns leaflet map default settings.
+ */
+function geo_images_custom_leaflet_map_default_settings(): array {
+  return [
+    'dragging' => TRUE,
+    'touchZoom' => TRUE,
+    'scrollWheelZoom' => TRUE,
+    'doubleClickZoom' => TRUE,
+    'zoomControl' => TRUE,
+    'attributionControl' => TRUE,
+    'trackResize' => TRUE,
+    'fadeAnimation' => TRUE,
+    'zoomAnimation' => TRUE,
+    'closePopupOnClick' => TRUE,
+    'minZoom' => 2,
+    'maxZoom' => 20,
+    'zoom' => 15,
+    'layerControl' => FALSE,
+    'layerControlOptions' => [
+      'position' => 'topright',
+      'collapsed' => TRUE,
+    ],
+    'worldCopyJump' => TRUE,
+  ];
+}
+
+/**
+ * Implements hook_leaflet_map_info().
+ */
+function geo_images_custom_leaflet_map_info(): array {
+  $map_info = [
+    'Stamen_Terrain' => [
+      'label' => 'Stamen_Terrain',
+      'description' => t('Leaflet Stamen_Terrain map.'),
+      'settings' => geo_images_custom_leaflet_map_default_settings(),
+      'layers' => [
+        'earth' => [
+          'urlTemplate' => 'https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}.jpg',
+          'options' => [
+            "minZoom" => 0,
+            "maxZoom" => 18,
+            "ext" => "png",
+            "subdomains" => "abcd",
+            "attribution" => '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> <a href="https://stamen.com/" target="_blank">&copy; Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/about" target="_blank">OpenStreetMap</a> contributors',
+          ],
+        ],
+      ],
+      // Uncomment the lines below to use a custom icon.
+      'icon' => [
+        'iconUrl'       => '/sites/default/files/geofieldmap_icons_old/marker_red.png',
+        'iconSize'      => ['x' => '20', 'y' => '20'],
+        'iconAnchor'    => ['x' => '20', 'y' => '20'],
+        'popupAnchor'   => ['x' => '-8', 'y' => '-32'],
+        'shadowUrl'     => '/sites/default/files/geofieldmap_icons_old/marker_red.png',
+        'shadowSize'    => ['x' => '25', 'y' => '27'],
+        'shadowAnchor'  => ['x' => '0', 'y' => '27'],
+      ],
+      // Enable and configure plugins in the plugins array.
+      'plugins' => [],
+    ],
+  ];
+
+  // Add some map definitions from the D7 leaflet_more_maps module.
+  // OpenStreetMap OSM Mapnik classic map is available via leaflet.module.
+  $map_info['multilayers'] = [
+    'label' => 'Multilayers',
+    'description' => t('Multilayers'),
+    'settings' => geo_images_custom_leaflet_map_default_settings(),
+    'layers' => [
+      'Stadia Alidade Smooth' => [
+        'type' => 'vector',
+        'urlTemplate' => 'https://tiles.stadiamaps.com/styles/alidade_smooth.json',
+        'options' => [
+          'attribution' => '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+        ],
+      ],
+      'Stamen_Terrain' => [
+        'urlTemplate' => 'https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}.jpg',
+        'options' => [
+          "minZoom" => 0,
+          "maxZoom" => 18,
+          "ext" => "png",
+          "subdomains" => "abcd",
+          "attribution" => '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> <a href="https://stamen.com/" target="_blank">&copy; Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/about" target="_blank">OpenStreetMap</a> contributors'
+        ],
+      ],
+      'OpenStreetMap' => [
+        'urlTemplate' => 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        'options' => [
+          "maxZoom" => 19,
+          "attribution" => "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
+        ],
+      ],
+      'Stadia Alidade Dark' => [
+        'type' => 'vector',
+        'urlTemplate' => 'https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json',
+        'options' => [
+          'attribution' => '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+        ],
+      ],
+      'OpenRailwayMap' => [
+        'layer_type' => 'overlay',
+        'layer_hidden' => TRUE,
+        'urlTemplate' => 'https://tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png',
+        'options' => [
+          "maxZoom" => 19,
+          'attribution' => 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Map style: &copy; <a href="https://www.OpenRailwayMap.org">OpenRailwayMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+        ],
+      ],
+      // Google Maps Tiles in Leaflet.
+      // @see https://stackoverflow.com/questions/41739753/how-to-correctly-use-google-maps-static-tiles-with-leaflet
+      'Google Roads' => [
+        'type' => 'google',
+        'urlTemplate' => '//mt{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+        'options' => [
+          'attribution' => 'Map data &copy; <a href="https://googlemaps.com">Google</a>',
+          'detectRetina' => FALSE,
+          'subdomains' => [0, 1, 2, 3],
+        ],
+      ],
+      'Google Hybrid' => [
+        'type' => 'google',
+        'urlTemplate' => '//mt{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',
+        'options' => [
+          "minZoom" => 0,
+          "maxZoom" => 20,
+          'attribution' => 'Map data &copy; <a href="http://googlemaps.com">Google</a>',
+          'detectRetina' => FALSE,
+          'subdomains' => ['0', '1', '2', '3'],
+        ],
+      ],
+      'Map Tiler Aquarelle' => [
+        'urlTemplate' => 'https://api.maptiler.com/maps/aquarelle/{z}/{x}/{y}.png?key=OIQHXCpngQEP6dfvC5nq',
+        'options' => [
+          "tileSize" => 512,
+          "zoomOffset" => -1,
+          "minZoom" => 0,
+          "maxZoom" => 22,
+          'attribution' => "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
+          'crossOrigin' => TRUE,
+        ],
+      ],
+      'Map Tiler Backdrop' => [
+        'urlTemplate' => 'https://api.maptiler.com/maps/backdrop/{z}/{x}/{y}.png?key=OIQHXCpngQEP6dfvC5nq',
+        'options' => [
+          "tileSize" => 512,
+          "zoomOffset" => -1,
+          "minZoom" => 0,
+          "maxZoom" => 22,
+          'attribution' => "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
+          'crossOrigin' => TRUE,
+        ],
+      ],
+    ],
+  ];
+
+  return $map_info;
+}
