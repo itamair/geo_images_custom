@@ -13,10 +13,10 @@
     ],
     "require": {
         "php": "^8.0",
-        "drupal/geofield": "^1.62",
-        "drupal/leaflet": "^10.2",
-        "drupal/geocoder": "^4.26",
-        "drupal/media_library_importer": "^2.1",
-        "pschocke/google-maps-links": "^1.1"
+        "drupal/geofield": "^1",
+        "drupal/leaflet": "^10",
+        "drupal/geocoder": "^4",
+        "drupal/media_library_importer": "^2",
+        "pschocke/google-maps-links": "^1"
     }
 }
