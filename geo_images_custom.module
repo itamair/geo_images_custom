@@ -182,39 +182,9 @@ function geo_images_custom_leaflet_map_default_settings(): array {
  * Implements hook_leaflet_map_info().
  */
 function geo_images_custom_leaflet_map_info(): array {
-  $map_info = [
-    'Stamen_Terrain' => [
-      'label' => 'Stamen_Terrain',
-      'description' => t('Leaflet Stamen_Terrain map.'),
-      'settings' => geo_images_custom_leaflet_map_default_settings(),
-      'layers' => [
-        'earth' => [
-          'urlTemplate' => 'https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}.jpg',
-          'options' => [
-            "minZoom" => 0,
-            "maxZoom" => 18,
-            "ext" => "png",
-            "subdomains" => "abcd",
-            "attribution" => '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> <a href="https://stamen.com/" target="_blank">&copy; Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/about" target="_blank">OpenStreetMap</a> contributors',
-          ],
-        ],
-      ],
-      // Uncomment the lines below to use a custom icon.
-      'icon' => [
-        'iconUrl'       => '/sites/default/files/geofieldmap_icons_old/marker_red.png',
-        'iconSize'      => ['x' => '20', 'y' => '20'],
-        'iconAnchor'    => ['x' => '20', 'y' => '20'],
-        'popupAnchor'   => ['x' => '-8', 'y' => '-32'],
-        'shadowUrl'     => '/sites/default/files/geofieldmap_icons_old/marker_red.png',
-        'shadowSize'    => ['x' => '25', 'y' => '27'],
-        'shadowAnchor'  => ['x' => '0', 'y' => '27'],
-      ],
-      // Enable and configure plugins in the plugins array.
-      'plugins' => [],
-    ],
-  ];
+  $map_info = [];
 
-  // Add some map definitions from the D7 leaflet_more_maps module.
+  // Add some map definitions with multi layers format.
   // OpenStreetMap OSM Mapnik classic map is available via leaflet.module.
   $map_info['multilayers'] = [
     'label' => 'Multilayers',
