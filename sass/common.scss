@@ -332,7 +332,10 @@
         }
       }
       .form-actions {
-        margin-top: 0 !important;
+        margin-top: var(--sp0-5);
+        input {
+          margin-bottom: var(--sp0-5);
+        }
       }
     }
   }
@@ -350,6 +353,18 @@
       }
       > div {
         display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 43.75rem) {
+  .view-geo-images-map,.view-geo-images-list {
+    .view-filters {
+      form {
+        .form-actions input {
+          // margin-top: var(--sp0-5) !important;
+        }
       }
     }
   }

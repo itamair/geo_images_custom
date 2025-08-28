@@ -351,9 +351,13 @@
 }
 /* line 334, ../sass/common.scss */
 .view-geo-images-map .view-filters form .form-actions, .view-geo-images-list .view-filters form .form-actions {
-  margin-top: 0 !important;
+  margin-top: var(--sp0-5);
 }
-/* line 340, ../sass/common.scss */
+/* line 336, ../sass/common.scss */
+.view-geo-images-map .view-filters form .form-actions input, .view-geo-images-list .view-filters form .form-actions input {
+  margin-bottom: var(--sp0-5);
+}
+/* line 343, ../sass/common.scss */
 .view-geo-images-map.view-display-id-attachment_dates .view-content, .view-geo-images-list.view-display-id-attachment_dates .view-content {
   gap: 0 !important;
   max-height: 106px;
@@ -361,13 +365,13 @@
   border: 1px solid lightgrey;
   padding: 0 10px 10px 10px;
 }
-/* line 346, ../sass/common.scss */
+/* line 349, ../sass/common.scss */
 .view-geo-images-map.view-display-id-attachment_dates .view-content > h3, .view-geo-images-list.view-display-id-attachment_dates .view-content > h3 {
   margin-block: 0;
   font-size: 1rem;
   font-weight: normal;
 }
-/* line 351, ../sass/common.scss */
+/* line 354, ../sass/common.scss */
 .view-geo-images-map.view-display-id-attachment_dates .view-content > div, .view-geo-images-list.view-display-id-attachment_dates .view-content > div {
   display: none;
 }
